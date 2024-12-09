@@ -21,3 +21,5 @@ std::size_t Expression::get_count_expressions() {
 
 // Eftersom de flesta funktionerna i Expression är virtuella och måste implementeras i subklasser (t.ex. Polynomial och Logarithm), 
 // är det begränsat vad som behövs i basklassens implementation.
+
+// Test kommentar
