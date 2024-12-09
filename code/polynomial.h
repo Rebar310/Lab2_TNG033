@@ -44,6 +44,7 @@ public:
 
     private:
     std::vector<double> coefficients; // Lagrar koefficienterna för polynomet
+    // När "coefficients" förstörs, frigörs minnet automatiskt.
 };
 
 

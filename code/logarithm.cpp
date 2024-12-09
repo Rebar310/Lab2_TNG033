@@ -37,7 +37,6 @@ Logarithm::~Logarithm() {
 }
 
 
-
 // Tilldelningsoperator
 Logarithm& Logarithm::operator=(const Logarithm& other) {
     if (this != &other) {
