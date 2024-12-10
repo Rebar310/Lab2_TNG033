@@ -100,22 +100,25 @@ double Polynomial::operator()(double x) const {
 
 // Konvertering till std::string
 Polynomial::operator std::string() const {
-    std::ostringstream os;
-    os << std::fixed << std::setprecision(2);
+    std::ostringstream os; // Skapar en ström för att bygga upp en sträng bit för bit
+    os << std::fixed << std::setprecision(2); // Ställer in formatet för flyttal till fast decimal och två decimaler
 
-    bool is_first_term = true; // För att hantera "+" korrekt
+    bool is_first_term = true; // Håller reda på om det är första termen i polynomet för att hantera "+"-tecknet korrekt
 
+    // Loopar igenom alla koefficienter i vektorn
     for (std::size_t i = 0; i < coefficients.size(); ++i) {
-        
+         
+        // Om det inte är första termen, lägg till " + " eller " - " beroende på koefficientens tecken
             if (!is_first_term) {
-                os << (coefficients[i] >= 0 ? " + " : " - ");
+                os << (coefficients[i] >= 0 ? " + " : " - "); // Lägg till " + " för positiva och " - " för negativa koefficienter
             }
             else if (coefficients[i] < 0) {
-                os << "-";
+                os << "-";  // Första termen: lägg till "-" om koefficienten är negativ
             }
 
-            double c = coefficients[i];
-            double absc = std::abs(coefficients[i]);
+            // Extrahera och bearbeta koefficienten
+            double c = coefficients[i]; // Originalkoefficient
+            double absc = std::abs(coefficients[i]);  // Absolutvärde av koefficienten för att hantera negativa tecken separat
 
             os << std::abs(coefficients[i]); // Absolutvärde för att hantera "-" separat
 
@@ -123,7 +126,7 @@ Polynomial::operator std::string() const {
                 os << " * X^" << i; // Lägg till "X^n" endast för termer med exponent > 0
             }
 
-            is_first_term = false;
+            is_first_term = false; // Markera att första termen har bearbetats
         
     }
 
@@ -131,9 +134,7 @@ Polynomial::operator std::string() const {
     if (is_first_term) {
         os << "0.00";
     }
-    // testar efter buggar
-    //std::cout << "Test utskrift av os.str: " << os.str() << "\n";
-
+    
     return os.str();
 }
 

@@ -71,12 +71,15 @@ int main() {
         assert(std::string{p1} == std::string{"2.20 + 4.40 * X^1 - 8.00 * X^2 + 5.00 * X^3"});
 
         //**********************************************
+
         const Polynomial p2{v1};
+        //std::cout << p2[3];  // this equals 5
         //p2[3] = -4.4; // should not compile because
         
         // Detta blir error då vi jobbar med ett const objekt
-        // i funktionen operator[] så kommer index = 3 och coefficients.size() vara 4 därav kommer denna 
-        // funktionen vilja expandera vektorn, detta vilket inte går då det är const polynom
+        // i funktionen operator[] så kommer index = 3 och coefficients.size() vara 4 därav kommer denna
+        // men då polynomet är const så kallar den på den andra operatorn spm vi har 
+        // vilket gör att vi returnerar bara värdet 5.0 vilket inte equals -4,4
         //*********************************************
 
         assert(Expression::get_count_expressions() == 2);
